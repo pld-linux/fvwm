@@ -93,6 +93,12 @@ install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 install %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
+install -d $RPM_BUILD_ROOT%{_bindir}
+mv $RPM_BUILD_ROOT/usr/X11R6/bin/fvwm $RPM_BUILD_ROOT%{_bindir}/fvwm
+
+install -d $RPM_BUILD_ROOT%{_mandir}
+mv $RPM_BUILD_ROOT/usr/X11R6/man/man1 $RPM_BUILD_ROOT%{_mandir}/
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
