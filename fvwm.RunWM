@@ -22,9 +22,9 @@ else
 fi
 
 # if this works, we stop here
-eval "exec /usr/X11R6/bin/fvwm ${FVWMOPTIONS}"
+eval "exec /usr/bin/fvwm ${FVWMOPTIONS}"
 cat >&2 <<EOF
  WARNING: You selected Fvwm as your window manager, but your installation
- does not appear to be functional. The executable /usr/X11R6/bin/fvwm was 
+ does not appear to be functional. The executable /usr/bin/fvwm was 
  not found on your system.
 EOF
