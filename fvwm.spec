@@ -12,6 +12,7 @@ License:	GPL
 Group:		X11/Window Managers
 Requires:	fvwm2-icons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
+# Source0-md5:	875733e77e285566197f4b50746aefc6
 Source1:	%{name}-system.%{name}rc
 Source2:	%{name}.desktop
 Source3:	%{name}.RunWM
