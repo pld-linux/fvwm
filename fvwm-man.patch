@@ -1,0 +1,45 @@
+--- fvwm-1.24r/fvwm/fvwm.man~	2004-09-17 03:08:51.000000000 +0200
++++ fvwm-1.24r/fvwm/fvwm.man	2004-09-17 03:08:51.000000000 +0200
+@@ -17,12 +17,12 @@
+ .TH FVWM 1.2 "Jan 28, 1994"
+ .UC
+ .SH NAME
+-fvwm \- F(?) Virtual Window Manager for X11
++fvwm1 \- F(?) Virtual Window Manager for X11
+ .SH SYNOPSIS
+-\fBfvwm\fP [ \fIoptions\fP ]
++\fBfvwm1\fP [ \fIoptions\fP ]
+ .SH DESCRIPTION
+-\fIFvwm\fP is a window manager for X11. It is a derivative of \fItwm\fP, 
+-redesigned 
++\fIFvwm\fP (binary is named \fIfvwm1\fP to avoid conflict with newer version 
++of fvwm) is a window manager for X11. It is a derivative of \fItwm\fP, redesigned 
+ to minimize memory consumption, provide a 3-D look to window frames, and
+ provide a simple virtual desktop.  Memory consumption is estimated at about 
+ one-half to one-third the memory consumption of \fItwm\fP, due primarily to a 
+@@ -383,20 +383,20 @@
+ define M4.
+ 
+ .SH OPTIONS
+-These are the command line options that are recoginzed by \fIfvwm\fP:
++These are the command line options that are recoginzed by \fIfvwm1\fP:
+ .IP "\fB-f\fP \fIconfig_file\fP"
+-Causes \fIfvwm\fP to use \fIconfig_file\fP in the user's home directory
++Causes \fIfvwm1\fP to use \fIconfig_file\fP in the user's home directory
+ instead of .fvwmrc as the window manager configuration file.
+ .IP "\fB-debug\fP"
+ Puts X transactions in synchronous mode, which dramatically slows things
+-down, but guarantees that \fIfvwm\fP's internal error messages are correct.
++down, but guarantees that \fIfvwm1\fP's internal error messages are correct.
+ .IP "\fB-d\fP \fIdisplayname\fP"
+ Manage the display called "displayname" instead of the name obtained from 
+ the environment variable $DISPLAY.
+ .IP "\fB-s\fP"
+-On a multi-screen display, run \fIfvwm\fP only on the screen named in
++On a multi-screen display, run \fIfvwm1\fP only on the screen named in
+ the $DISPLAY environment variable or provided through the -d
+-option. Normally, \fIfvwm\fP will attempt to start up on all screens
++option. Normally, \fIfvwm1\fP will attempt to start up on all screens
+ of a multi-screen display.
+ .IP "\fB-version\fP"
+ Print the version of \fIfvwm\fP to stderr.
