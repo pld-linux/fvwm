@@ -1,30 +1,36 @@
 Summary:	An X Window System based window manager
+Summary(es):	Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
+Summary(de):	Feeble (Fine?) Virtual Window Manager 
+Summary(fr):	Feeble (Fine ?) Virtual Window Manager
+Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
+Summary(tr):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
 Release:	23
 License:	GPL
 Group:		X11/Window Managers
-Group(pl):	X11/Zarz±dcy Okien
+Group(de):	X11/Fenstermanager
 Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
+Group(pl):	X11/Zarz±dcy Okien
 Requires:	fvwm2-icons
 Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
-Source1:	fvwm-system.fvwmrc
-Source2:	fvwm.desktop
+Source1:	%{name}-system.%{name}rc
+Source2:	%{name}.desktop
 Source3:	%{name}.RunWM
 Source4:	%{name}.wm_style
-Patch0:		fvwm-1.24r-fsstnd.patch
-Patch1:		fvwm-1.24r-imake.patch
-Patch2:		fvwm-1.24r-security.patch
-Patch3:		fvwm-1.24r-fvwmman.patch
-Patch4:		fvwm-enable-m4.patch
+Patch0:		%{name}-fsstnd.patch
+Patch1:		%{name}-imake.patch
+Patch2:		%{name}-security.patch
+Patch3:		%{name}-%{name}man.patch
+Patch4:		%{name}-enable-m4.patch
 Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
 Requires:	xinitrc >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix	/usr/X11R6
-%define		_mandir	/usr/X11R6/man
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
@@ -34,6 +40,11 @@ minimize memory consumption, to provide window frames with a 3D look,
 and to provide a simple virtual desktop. FVWM can be configured to
 look like Motif.
 
+%description -l es
+fvwm es un administrador de ventanas pequeño, rápido y muy flexible.
+Puede ser configurado para parecer con Motif, y posee una útil "barra
+de botones".
+
 %description -l pl
 FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od
 pierwszych liter "Virtual Window Manager", czyli wirtualnego mened¿era
@@ -42,6 +53,11 @@ Zaprojektowano go tak, by zminimalizowaæ wymagania pamiêciowe,
 udostêpniæ ramki okien sprawiaj±ce wra¿enie trójwymiarowych i proste
 biurko wirtualne. Mo¿na tez skonfigurowaæ FVWM tak, by mia³ motiffowy
 wygl±d.
+
+%description -l pt
+fvwm é um gerente de janelas pequeno, rápido e muito flexível. Ele
+pode ser configurado para parecer com Motif, e possui uma útil "barra
+de botões".
 
 %prep
 %setup -q
@@ -56,9 +72,12 @@ export PATH=$PATH:%{_bindir}
 xmkmf
 %{__make} Makefiles
 %{__make} \
-	"BOOTSTRAPCFLAGS=$RPM_OPT_FLAGS" \
-	"CDEBUGFLAGS=" "CCOPTIONS=$RPM_OPT_FLAGS" \
-	"CXXDEBUGFLAGS=" "CXXOPTIONS=$RPM_OPT_FLAGS"
+	BOOTSTRAPCFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
+	CCOPTIONS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
+	CXXOPTIONS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
+	CXXDEBUGFLAGS="" \
+	CDEBUGFLAGS="" \
+	LOCAL_LDFLAGS="%{!?debug:-s}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -72,11 +91,6 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
-
-strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/fvwm \
-	$RPM_BUILD_ROOT%{_libdir}/X11/fvwm/* || :
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/*/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
