@@ -46,14 +46,14 @@ wygl±d.
 %build
 export PATH=$PATH:%{_bindir}
 xmkmf
-make Makefiles
+%{__make} Makefiles
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/
 
-make install install.man DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 install $RPM_SOURCE_DIR/fvwm-1.24r-system.fvwmrc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
 strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/fvwm \
 	$RPM_BUILD_ROOT%{_libdir}/X11/fvwm/* || :
