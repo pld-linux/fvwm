@@ -103,8 +103,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
 %dir %{_libdir}/X11/fvwm
+# something is still wrong, binaries land in /usr/X11R6/lib/X11/fvwm/*
 %attr(755,root,root) %{_libdir}/X11/fvwm/*
 %attr(755,root,root) %{_bindir}/fvwm
-%{_datadir}/xsessions}/%{name}.desktop
+%{_datadir}/xsessions/%{name}.desktop
 %{_wmpropsdir}/fvwm.desktop
 %{_mandir}/*/*
