@@ -44,13 +44,13 @@ Puede ser configurado para parecer con Motif, y posee una útil "barra
 de botones".
 
 %description -l pl
-FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od
-pierwszych liter "Virtual Window Manager", czyli wirtualnego mened¿era
-okien) to mened¿er okien dla systemu X Window. FVWM pochodzi od twm.
+FVWM (za F mo¿na sobie podstawiæ co kto woli, lecz VWM pochodzi od
+pierwszych liter "Virtual Window Manager", czyli wirtualny zarz±dca
+okien) to zarz±dca okien dla systemu X Window. FVWM pochodzi od twm.
 Zaprojektowano go tak, by zminimalizowaæ wymagania pamiêciowe,
 udostêpniæ ramki okien sprawiaj±ce wra¿enie trójwymiarowych i proste
-biurko wirtualne. Mo¿na tez skonfigurowaæ FVWM tak, by mia³ motiffowy
-wygl±d.
+biurko wirtualne. Mo¿na tez skonfigurowaæ FVWM tak, by mia³ wygl±d
+podobny do Motifa.
 
 %description -l pt
 fvwm é um gerente de janelas pequeno, rápido e muito flexível. Ele
