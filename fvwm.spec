@@ -25,7 +25,7 @@ Patch3:		%{name}-%{name}man.patch
 Patch4:		%{name}-enable-m4.patch
 Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
-Requires:	xinitrc >= 3.0
+Requires:	xinitrc-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_wmpropsdir	/usr/share/wm-properties
