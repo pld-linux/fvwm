@@ -1,7 +1,7 @@
 Summary:	An X Window System based window manager
 Name:		fvwm
 Version:	1.24r
-Release:	20
+Release:	21
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
@@ -15,6 +15,9 @@ Patch0:		fvwm-1.24r-fsstnd.patch
 Patch1:		fvwm-1.24r-imake.patch
 Patch2:		fvwm-1.24r-security.patch
 Patch3:		fvwm-1.24r-fvwmman.patch
+Patch4:		fvwm-enable-m4.patch
+Requires:	wmconfig
+Requires:	m4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix	/usr/X11R6
@@ -43,6 +46,7 @@ wygl±d.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export PATH=$PATH:%{_bindir}
