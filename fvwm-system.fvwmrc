@@ -17,6 +17,8 @@
 # If you get it wrong, the most common problem is that color or font settings
 # are ignored
 
+undefine(`include')
+
 ###########################################################################
 # set up the colors
 #
@@ -344,71 +346,6 @@ Popup "Module-Popup"
 	Module  "FvwmWinList"   FvwmWinList
 EndPopup
 
-Popup "Apps"
-        Exec    "Netscape"      exec netscape &
-        Exec    "Mosaic"        exec Mosaic &
-	Exec    "Arena"         exec arena &
-	Nop     ""
-        Exec    "slrn"          exec xterm -e slrn &
-        Exec    "exmh"          exec exmh &
-        Exec    "Pine"          exec xterm -e pine &
-        Exec    "Elm"           exec xterm -e elm &
-	Nop     ""
-        Exec    "TkMan"         exec tkman &
-        Exec    "TkInfo"        exec tkinfo &
-        Exec    "Emacs"         exec emacs &
-        Exec    "Emacs nox"     exec xterm -e emacs-nox &
-	Exec    "Jed"           exec xterm -e jed &
-	Nop     ""
-        Exec    "X File Manager" exec xfm &
-        Exec    "xpaint"        exec xpaint &
-        Exec    "xfig"          exec xfig &
-# Why doesn't this work?
-#        Exec    "ImageMagick"   exec display &
-        Exec    "xv"            exec xv &
-	Nop     ""
-        Exec    "wish"          exec xterm -e wish &
-        Exec    "Python"        exec xterm -e python &
-EndPopup
-
-Popup "Games"
-        Exec    "Hextris"       exec cxhextris &
-	Exec    "xbill"         exec xbill &
-	Exec    "Chess"         exec xboard &
-	Exec    "xchomp"        exec xchomp &
-	Exec    "Minesweeper"   exec xdemineur &
-	Exec    "Backgammon"    exec xgammon &
-	Exec    "xjewel"        exec xjewel &
-	Exec    "xlander"       exec xlander &
-	Exec    "xsnow"         exec xsnow &
-	Exec    "Tetris"        exec xtetris &
-	Exec    "Trojka"        exec xtrojka &
-EndPopup
-
-Popup "Utils"
-	Exec    "Top"		exec xterm -T Top -n Top -e top &
-	Exec	"Calculator"	exec xcalc &
-	Exec	"Xman"		exec xman &
-	Exec	"Xmag"		exec xmag &
-	Exec    "xosview"       exec xosview &
-EndPopup
-
-# This menu will fire up some very common utilities
-Popup "Utilities"
-	Title 	"Program Menu"
-	Exec    "Xterm"		exec xterm &
-	Exec    "Rxvt"		exec rxvt -bg Black -fg Wheat &
-	Exec	"Color Xterm"	exec xterm-color &
-	Nop	""
-	Popup   "Applications"  Apps
-	Popup   "Games"         Games
-	Popup   "Utilities"     Utils
-	Popup	"Modules"	Module-Popup
-	Nop	""
-        Restart "Restart Fvwm"  fvwm
-	Popup	"Exit Fvwm"	Quit-Verify
-EndPopup
-
 # This defines the most common window operations
 Popup "Window Ops"
 	Title		"Window Ops"
@@ -457,6 +394,20 @@ Function "window_ops_func"
 	Close  "DoubleClick"  
 EndFunction
 
+esyscmd(wmconfig --output afterstep --rootmenu Programs)
+
+# This menu will fire up some very common utilities
+Popup "MainMenu"
+	Title 	"Main Menu"
+	Exec    "Xterm"		exec xterm &
+	Exec    "Rxvt"		exec rxvt -bg Black -fg Wheat &
+	Nop	""
+	Popup	"Programs"	Programs
+	Popup	"Modules"	Module-Popup
+	Nop	""
+        Restart "Restart Fvwm"  fvwm
+	Popup	"Exit Fvwm"	Quit-Verify
+EndPopup
 
 ##############################################################################
 # This defines the mouse bindings
@@ -469,7 +420,7 @@ EndFunction
 # any shift-control-whatever combination you want!
 
 #     Button	Context Modifi 	Function
-Mouse 1		R   	A       PopUp "Utilities"
+Mouse 1		R   	A       PopUp "MainMenu"
 Mouse 2		R    	A      	PopUp "Window Ops"
 Mouse 3		R    	A      	Module "winlist" FvwmWinList transient
 
