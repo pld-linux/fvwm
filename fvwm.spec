@@ -47,7 +47,7 @@ wygl±d.
 export PATH=$PATH:%{_bindir}
 xmkmf
 %{__make} Makefiles
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
