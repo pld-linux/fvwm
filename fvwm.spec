@@ -6,12 +6,12 @@ Summary(pl):	Zarz±dca okien dla X Window System
 Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
 Summary(tr):	X11 için pencere denetleyicisi
 Name:		fvwm
-Version:	1.24r
-Release:	24
+Version:	2.4.15
+Release:	0.1
 License:	GPL
 Group:		X11/Window Managers
 Requires:	fvwm2-icons
-Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-2/%{name}-%{version}.tar.bz2
 Source1:	%{name}-system.%{name}rc
 Source2:	%{name}.desktop
 Source3:	%{name}.RunWM
@@ -57,29 +57,27 @@ de botões".
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
 
 %build
-PATH="$PATH:%{_bindir}"; export PATH
-xmkmf
-%{__make} Makefiles
-%{__make} \
-	BOOTSTRAPCFLAGS="%{rpmcflags}" \
-	CCOPTIONS="%{rpmcflags}" \
-	CXXOPTIONS="%{rpmcflags}" \
-	CXXDEBUGFLAGS="" \
-	CDEBUGFLAGS="" \
-	LOCAL_LDFLAGS="%{rpmldflags}"
+rm -f missing
+%{__gettextize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm},%{_wmpropsdir}}
 
-%{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
@@ -97,8 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %config %{_sysconfdir}/X11/fvwm/system.fvwmrc
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
-%dir %{_libdir}/X11/fvwm
-%attr(755,root,root) %{_libdir}/X11/fvwm/*
-%attr(755,root,root) %{_bindir}/fvwm
+%dir %{_libdir}/%{name}/%{version}
+%attr(755,root,root) %{_libdir}/%{name}/%{version}/*
+%attr(755,root,root) %{_bindir}/*
+%dir %{_datadir}/%{name}/
+%attr(755,root,root) %{_datadir}/%{name}/*
 %{_wmpropsdir}/fvwm.desktop
 %{_mandir}/*/*
