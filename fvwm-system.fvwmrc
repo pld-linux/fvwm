@@ -394,13 +394,15 @@ Function "window_ops_func"
 	Close  "DoubleClick"  
 EndFunction
 
-esyscmd(wmconfig --output afterstep --rootmenu Programs)
+#esyscmd(wmconfig --output afterstep --rootmenu Applications)
+#esyscmd(vfmg -f -x -c fvwm)
+esyscmd(cat /etc/X11/fvwm/fvwm.menu)
 
 Popup	"Main Menu"
 	Exec    "Xterm"		exec xterm &
 	Exec    "Rxvt"		exec rxvt -bg Black -fg Wheat &
 	Nop	""
-	Popup	"Programs"	Programs
+	Popup	"Applications"	Applications
 	Nop	""
 	Popup	"Modules"	Module-Popup
 	Nop	""
