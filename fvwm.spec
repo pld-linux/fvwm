@@ -7,10 +7,9 @@ Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
 Summary(tr):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
-Release:	26
+Release:	27
 License:	GPL
 Group:		X11/Window Managers
-Requires:	fvwm2-icons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
 # Source0-md5:	875733e77e285566197f4b50746aefc6
 Source1:	%{name}-system.%{name}rc
@@ -24,8 +23,10 @@ Patch3:		%{name}-%{name}man.patch
 Patch4:		%{name}-enable-m4.patch
 Patch5:		%{name}-maxpopups.patch
 Patch6:		%{name}-man.patch
-Requires:	wmconfig >= 0.9.9-5
+Requires(post):	vfmg >= 0.9.18-3
+Requires:	fvwm2-icons
 Requires:	m4
+Requires:	vfmg >= 0.9.18-3
 Requires:	xinitrc-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -104,6 +105,12 @@ mv $RPM_BUILD_ROOT%{_mandir}/man1/fvwm{,1}.1x
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+# generate initial menu
+[ -f /etc/sysconfig/vfmg ] && . /etc/sysconfig/vfmg
+[ $FVWM = yes -o $FVWM = 1 -o ! -f /etc/X11/fvwm/fvwm.menu ] && \
+	vfmg -f -x -c fvwm >/etc/X11/fvwm/fvwm.menu 2>/dev/null ||:
 
 %files
 %defattr(644,root,root,755)
