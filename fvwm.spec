@@ -11,7 +11,7 @@ Patch0:		fvwm-1.24r-fsstnd.patch
 Patch1:		fvwm-1.24r-imake.patch
 Patch2:		fvwm-1.24r-security.patch
 Patch3:		fvwm-1.24r-fvwmman.patch
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix	/usr/X11R6
 %define		_mandir	/usr/X11R6/man
