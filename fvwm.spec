@@ -31,6 +31,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_wmpropsdir	%{_datadir}/wm-properties
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
@@ -72,22 +73,21 @@ export PATH=$PATH:%{_bindir}
 xmkmf
 %{__make} Makefiles
 %{__make} \
-	BOOTSTRAPCFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}" \
-	CCOPTIONS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}" \
-	CXXOPTIONS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}" \
+	BOOTSTRAPCFLAGS="%{rpmcflags}" \
+	CCOPTIONS="%{rpmcflags}" \
+	CXXOPTIONS="%{rpmcflags}" \
 	CXXDEBUGFLAGS="" \
 	CDEBUGFLAGS="" \
-	LOCAL_LDFLAGS="%{!?debug:-s}"
+	LOCAL_LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm} \
-	$RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm},%{_wmpropsdir}}
 
 %{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
@@ -105,5 +105,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/X11/fvwm
 %attr(755,root,root) %{_libdir}/X11/fvwm/*
 %attr(755,root,root) %{_bindir}/fvwm
-%{_datadir}/gnome/wm-properties/fvwm.desktop
+%{_wmpropsdir}/fvwm.desktop
 %{_mandir}/*/*
