@@ -11,7 +11,7 @@ Release:	24
 License:	GPL
 Group:		X11/Window Managers
 Requires:	fvwm2-icons
-Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
+Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
 Source1:	%{name}-system.%{name}rc
 Source2:	%{name}.desktop
 Source3:	%{name}.RunWM
@@ -26,7 +26,7 @@ Requires:	m4
 Requires:	xinitrc >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_wmpropsdir	%{_datadir}/wm-properties
+%define		_wmpropsdir	/usr/share/wm-properties
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
