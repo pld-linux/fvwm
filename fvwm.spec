@@ -1,7 +1,7 @@
 Summary:	An X Window System based window manager
 Name:		fvwm
 Version:	1.24r
-Release:	18
+Release:	20
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
@@ -9,7 +9,8 @@ Group(es):	X11/Administraadores De Ventanas
 Group(fr):	X11/Gestionnaires De Fenêtres
 Requires:	fvwm2-icons
 Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
-Source1:	fvwm-1.24r-system.fvwmrc
+Source1:	fvwm-system.fvwmrc
+Source2:	fvwm.desktop
 Patch0:		fvwm-1.24r-fsstnd.patch
 Patch1:		fvwm-1.24r-imake.patch
 Patch2:		fvwm-1.24r-security.patch
@@ -47,14 +48,21 @@ wygl±d.
 export PATH=$PATH:%{_bindir}
 xmkmf
 %{__make} Makefiles
-%{__make}
+%{__make} \
+	"BOOTSTRAPCFLAGS=$RPM_OPT_FLAGS" \
+	"CDEBUGFLAGS=" "CCOPTIONS=$RPM_OPT_FLAGS" \
+	"CXXDEBUGFLAGS=" "CXXOPTIONS=$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/ \
+	$RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
 %{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
-install $RPM_SOURCE_DIR/fvwm-1.24r-system.fvwmrc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+
 strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/fvwm \
 	$RPM_BUILD_ROOT%{_libdir}/X11/fvwm/* || :
 
@@ -68,6 +76,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc sample.fvwmrc/*
 %dir %{_sysconfdir}/X11/fvwm
 %config %{_sysconfdir}/X11/fvwm/system.fvwmrc
-%{_libdir}/X11/fvwm
+%dir %{_libdir}/X11/fvwm
+%attr(755,root,root) %{_libdir}/X11/fvwm/*
 %attr(755,root,root) %{_bindir}/fvwm
+%{_datadir}/gnome/wm-properties/fvwm.desktop
 %{_mandir}/*/*
