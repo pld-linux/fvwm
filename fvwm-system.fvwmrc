@@ -394,7 +394,19 @@ Function "window_ops_func"
 	Close  "DoubleClick"  
 EndFunction
 
-esyscmd(wmconfig --output afterstep --rootmenu MainMenu --pre-include /etc/X11/fvwm/menu.fvwm.pre --post-include /etc/X11/fvwm/menu.fvwm.post)
+esyscmd(wmconfig --output afterstep --rootmenu Programs)
+
+Popup	"Main Menu"
+	Exec    "Xterm"		exec xterm &
+	Exec    "Rxvt"		exec rxvt -bg Black -fg Wheat &
+	Nop	""
+	Popup	"Programs"	Programs
+	Nop	""
+	Popup	"Modules"	Module-Popup
+	Nop	""
+        Restart "Restart Fvwm"  fvwm
+	Popup	"Exit Fvwm"	Quit-Verify
+EndPopup
 
 ##############################################################################
 # This defines the mouse bindings
@@ -407,7 +419,7 @@ esyscmd(wmconfig --output afterstep --rootmenu MainMenu --pre-include /etc/X11/f
 # any shift-control-whatever combination you want!
 
 #     Button	Context Modifi 	Function
-Mouse 1		R   	A       PopUp "MainMenu"
+Mouse 1		R   	A       PopUp "Main Menu"
 Mouse 2		R    	A      	PopUp "Window Ops"
 Mouse 3		R    	A      	Module "winlist" FvwmWinList transient
 
