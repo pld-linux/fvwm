@@ -7,7 +7,7 @@ Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
 Summary(tr):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
-Release:	25
+Release:	26
 License:	GPL
 Group:		X11/Window Managers
 Requires:	fvwm2-icons
@@ -23,13 +23,13 @@ Patch2:		%{name}-security.patch
 Patch3:		%{name}-%{name}man.patch
 Patch4:		%{name}-enable-m4.patch
 Patch5:		%{name}-maxpopups.patch
+Patch6:		%{name}-man.patch
 Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
 Requires:	xinitrc-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_wmpropsdir	/usr/share/wm-properties
-%define		_xlibdir	/usr/X11R6/lib/X11
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
@@ -66,6 +66,7 @@ de botões".
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 PATH="$PATH:%{_bindir}"; export PATH
@@ -85,7 +86,10 @@ install -d \
 	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm} \
 	$RPM_BUILD_ROOT{%{_datadir}/xsessions,%{_wmpropsdir}}
 
-%{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install.man \
+	DESTDIR=$RPM_BUILD_ROOT \
+	BINDIR=%{_libdir}/fvwm1 \
+	MANDIR=%{_mandir}/man1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
@@ -94,10 +98,9 @@ install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
 install -d $RPM_BUILD_ROOT%{_bindir}
-mv $RPM_BUILD_ROOT/usr/X11R6/bin/fvwm $RPM_BUILD_ROOT%{_bindir}/fvwm
+mv $RPM_BUILD_ROOT%{_libdir}/fvwm1/fvwm $RPM_BUILD_ROOT%{_bindir}/fvwm1
 
-install -d $RPM_BUILD_ROOT%{_mandir}
-mv $RPM_BUILD_ROOT/usr/X11R6/man/man1 $RPM_BUILD_ROOT%{_mandir}/
+mv $RPM_BUILD_ROOT%{_mandir}/man1/fvwm{,1}.1x
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -108,9 +111,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/X11/fvwm
 %config %{_sysconfdir}/X11/fvwm/system.fvwmrc
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
-%dir %{_xlibdir}/fvwm
-%attr(755,root,root) %{_xlibdir}/fvwm/*
-%attr(755,root,root) %{_bindir}/fvwm
+%dir %{_libdir}/fvwm1
+%attr(755,root,root) %{_libdir}/fvwm1/*
+%attr(755,root,root) %{_bindir}/fvwm1
 %{_datadir}/xsessions/%{name}.desktop
 %{_wmpropsdir}/fvwm.desktop
 %{_mandir}/*/*
