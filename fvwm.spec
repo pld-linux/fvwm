@@ -2,11 +2,12 @@ Summary:	An X Window System based window manager
 Summary(es):	Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
 Summary(de):	Feeble (Fine?) Virtual Window Manager 
 Summary(fr):	Feeble (Fine ?) Virtual Window Manager
+Summary(pl):	Zarz±dca okien dla X Window System
 Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
 Summary(tr):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
-Release:	23
+Release:	24
 License:	GPL
 Group:		X11/Window Managers
 Group(de):	X11/Fenstermanager
@@ -69,7 +70,7 @@ de botões".
 %patch4 -p1
 
 %build
-export PATH=$PATH:%{_bindir}
+PATH="$PATH:%{_bindir}"; export PATH
 xmkmf
 %{__make} Makefiles
 %{__make} \
