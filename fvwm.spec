@@ -103,6 +103,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 mv $RPM_BUILD_ROOT%{_libdir}/fvwm1/fvwm $RPM_BUILD_ROOT%{_bindir}/fvwm1
 
 mv $RPM_BUILD_ROOT%{_mandir}/man1/fvwm{,1}.1x
+touch $RPM_BUILD_ROOT%{_sysconfdir}/fvwm.menu
 
 %clean
 rm -rf $RPM_BUILD_ROOT
