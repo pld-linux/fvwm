@@ -1,0 +1,33 @@
+diff -ur fvwm-1.24r.orig/configure.h fvwm-1.24r/configure.h
+--- fvwm-1.24r.orig/configure.h	Wed Jun 21 00:50:03 2000
++++ fvwm-1.24r/configure.h	Wed Jun 21 01:15:12 2000
+@@ -69,7 +69,7 @@
+  *            undefine(`include') to fix that one. Some version of m4
+  *            seem to give good error messages, others don't?
+  ***************************************************************************/
+-/* #define M4                          */
++#define M4
+ 
+ /***************************************************************************
+  *#define NO_PAGER 
+diff -ur fvwm-1.24r.orig/fvwm/configure.c fvwm-1.24r/fvwm/configure.c
+--- fvwm-1.24r.orig/fvwm/configure.c	Wed Jun 21 00:50:03 2000
++++ fvwm-1.24r/fvwm/configure.c	Wed Jun 21 01:17:42 2000
+@@ -1985,7 +1985,7 @@
+     } else {
+       strcpy(tmp_name, "/tmp");
+     }
+-    strcat(tmp_name, "/fvwmrcXXXXX");
++    strcat(tmp_name, "/fvwmrcXXXXXX");
+     mktemp(tmp_name);
+     
+     if (*tmp_name == '\0')
+@@ -2005,7 +2005,7 @@
+      * open a pipe to the command.
+      */
+ 
+-    sprintf(options, "%s %s %s >& %s\n",
++    sprintf(options, "%s %s %s > %s\n",
+ 	    m4_prog,
+ 	    ((m4_prefix == 0) ? "" : "--prefix-builtins"),
+ 	    m4_options, tmp_name);
