@@ -7,7 +7,7 @@ Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
 Summary(tr):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
-Release:	24
+Release:	25
 License:	GPL
 Group:		X11/Window Managers
 Requires:	fvwm2-icons
