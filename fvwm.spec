@@ -1,11 +1,14 @@
-Summary:	An X Window System based window manager.
+Summary:	An X Window System based window manager
 Name:		fvwm
 Version:	1.24r
 Release:	18
-Copyright:	GPL
-Group:		User Interface/Desktops
+License:	GPL
+Group:		X11/Window Managers
+Group(pl):	X11/Zarz±dcy Okien
+Group(es):	X11/Administraadores De Ventanas
+Group(fr):	X11/Gestionnaires De Fenêtres
 Requires:	fvwm2-icons
-Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/fvwm-1.24r.tar.gz
+Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
 Source1:	fvwm-1.24r-system.fvwmrc
 Patch0:		fvwm-1.24r-fsstnd.patch
 Patch1:		fvwm-1.24r-imake.patch
@@ -18,25 +21,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
-Virtual Window Manager) is a window manager for the X Window System. 
-FVWM was derived from the twm window manager.  FVWM is designed to
-minimize memory consumption, to provide window frames with a 3D look, and
-to provide a simple virtual desktop.  FVWM can be configured to look like
-Motif.
-
-Install the fvwm package if you'd like to use the FVWM window manager.  If
-you install fvwm, you'll also need to install fvwm2-icons.
+Virtual Window Manager) is a window manager for the X Window System.
+FVWM was derived from the twm window manager. FVWM is designed to
+minimize memory consumption, to provide window frames with a 3D look,
+and to provide a simple virtual desktop. FVWM can be configured to
+look like Motif.
 
 %description -l pl
-FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od pierwszych
-liter "Virtual Window Manager", czyli wirtualnego mened¿era okien) to mened¿er
-okien dla systemu X Window. FVWM pochodzi od twm. Zaprojektowano go tak,
-by zminimalizowaæ wymagania pamiêciowe, udostêpniæ ramki okien sprawiaj±ce 
-wra¿enie trójwymiarowych i proste biurko wirtualne. Mo¿na tez skonfigurowaæ
-FVWM tak, by mia³ motiffowy wygl±d.
-
-Nale¿y zainstalowaæ pakiet fvwm jesli chce siê uzywaæ mened¿era okien FVWM.
-Instaluj±c fvwm nalezy równiez zainstalowaæ pakiet fvwm2-icons.
+FVWM (za F mo¿na sobie podstawic co kto woli, lecz VWM pochodzi od
+pierwszych liter "Virtual Window Manager", czyli wirtualnego mened¿era
+okien) to mened¿er okien dla systemu X Window. FVWM pochodzi od twm.
+Zaprojektowano go tak, by zminimalizowaæ wymagania pamiêciowe,
+udostêpniæ ramki okien sprawiaj±ce wra¿enie trójwymiarowych i proste
+biurko wirtualne. Mo¿na tez skonfigurowaæ FVWM tak, by mia³ motiffowy
+wygl±d.
 
 %prep
 %setup -q
@@ -46,17 +44,17 @@ Instaluj±c fvwm nalezy równiez zainstalowaæ pakiet fvwm2-icons.
 %patch3 -p1
 
 %build
-export PATH=$PATH:/usr/X11R6/bin
+export PATH=$PATH:%{_bindir}
 xmkmf
 make Makefiles
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/X11/fvwm/
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/
 
 make install install.man DESTDIR=$RPM_BUILD_ROOT
-install $RPM_SOURCE_DIR/fvwm-1.24r-system.fvwmrc $RPM_BUILD_ROOT/etc/X11/fvwm/system.fvwmrc
+install $RPM_SOURCE_DIR/fvwm-1.24r-system.fvwmrc $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
 strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/fvwm \
 	$RPM_BUILD_ROOT%{_libdir}/X11/fvwm/* || :
 
@@ -66,9 +64,10 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/*/*
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(644,root,root,755)
 %doc sample.fvwmrc/*
-%dir /etc/X11/fvwm
-%config /etc/X11/fvwm/system.fvwmrc
+%dir %{_sysconfdir}/X11/fvwm
+%config %{_sysconfdir}/X11/fvwm/system.fvwmrc
 %{_libdir}/X11/fvwm
-%{_bindir}/fvwm
+%attr(755,root,root) %{_bindir}/fvwm
 %{_mandir}/*/*
