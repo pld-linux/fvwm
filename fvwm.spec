@@ -1,3 +1,7 @@
+#
+# TODO:
+# cleanups, more BRs,
+#
 Summary:	An X Window System based window manager
 Summary(es):	Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
 Summary(de):	Feeble (Fine?) Virtual Window Manager
