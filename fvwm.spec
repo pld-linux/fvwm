@@ -22,6 +22,7 @@ Patch1:		%{name}-imake.patch
 Patch2:		%{name}-security.patch
 Patch3:		%{name}-%{name}man.patch
 Patch4:		%{name}-enable-m4.patch
+Patch5:		%{name}-maxpopups.patch
 Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
 Requires:	xinitrc-ng
@@ -64,6 +65,7 @@ de botões".
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 PATH="$PATH:%{_bindir}"; export PATH
