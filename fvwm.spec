@@ -1,7 +1,7 @@
 Summary:	An X Window System based window manager
 Name:		fvwm
 Version:	1.24r
-Release:	22
+Release:	23
 License:	GPL
 Group:		X11/Window Managers
 Group(pl):	X11/Zarz±dcy Okien
@@ -10,16 +10,17 @@ Group(fr):	X11/Gestionnaires De Fenêtres
 Requires:	fvwm2-icons
 Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
 Source1:	fvwm-system.fvwmrc
-Source2:	fvwm-menu.fvwm.pre
-Source3:	fvwm-menu.fvwm.post
-Source4:	fvwm.desktop
+Source2:	fvwm.desktop
+Source3:	%{name}.RunWM
+Source4:	%{name}.wm_style
 Patch0:		fvwm-1.24r-fsstnd.patch
 Patch1:		fvwm-1.24r-imake.patch
 Patch2:		fvwm-1.24r-security.patch
 Patch3:		fvwm-1.24r-fvwmman.patch
 Patch4:		fvwm-enable-m4.patch
-Requires:	wmconfig >= 0.9.8-3
+Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
+Requires:	xinitrc >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix	/usr/X11R6
@@ -61,15 +62,16 @@ xmkmf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/ \
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm} \
 	$RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
 
 %{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/menu.fvwmrc.pre
-install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/menu.fvwmrc.post
-install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/gnome/wm-properties
+
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/fvwm \
 	$RPM_BUILD_ROOT%{_libdir}/X11/fvwm/* || :
@@ -84,6 +86,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc sample.fvwmrc/*
 %dir %{_sysconfdir}/X11/fvwm
 %config %{_sysconfdir}/X11/fvwm/system.fvwmrc
+%attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
+/etc/sysconfig/wmstyle/*.names
 %dir %{_libdir}/X11/fvwm
 %attr(755,root,root) %{_libdir}/X11/fvwm/*
 %attr(755,root,root) %{_bindir}/fvwm
