@@ -72,9 +72,9 @@ export PATH=$PATH:%{_bindir}
 xmkmf
 %{__make} Makefiles
 %{__make} \
-	BOOTSTRAPCFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
-	CCOPTIONS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
-	CXXOPTIONS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" \
+	BOOTSTRAPCFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" \
+	CCOPTIONS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" \
+	CXXOPTIONS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}" \
 	CXXDEBUGFLAGS="" \
 	CDEBUGFLAGS="" \
 	LOCAL_LDFLAGS="%{!?debug:-s}"
