@@ -1,6 +1,6 @@
 Summary:	An X Window System based window manager
 Summary(es):	Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
-Summary(de):	Feeble (Fine?) Virtual Window Manager 
+Summary(de):	Feeble (Fine?) Virtual Window Manager
 Summary(fr):	Feeble (Fine ?) Virtual Window Manager
 Summary(pl):	Zarz±dca okien dla X Window System
 Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
