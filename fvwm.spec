@@ -16,7 +16,6 @@ Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/window-managers/%{name}-%{version}.
 Source1:	%{name}-system.%{name}rc
 Source2:	%{name}.desktop
 Source3:	%{name}.RunWM
-Source4:	%{name}.wm_style
 Source5:	%{name}-xsession.desktop
 Patch0:		%{name}-fsstnd.patch
 Patch1:		%{name}-imake.patch
@@ -90,7 +89,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
-install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
 install %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
 install -d $RPM_BUILD_ROOT%{_bindir}
@@ -108,7 +106,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/X11/fvwm
 %config %{_sysconfdir}/X11/fvwm/system.fvwmrc
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
-/etc/sysconfig/wmstyle/*.names
 %dir %{_xlibdir}/fvwm
 %attr(755,root,root) %{_xlibdir}/fvwm/*
 %attr(755,root,root) %{_bindir}/fvwm
