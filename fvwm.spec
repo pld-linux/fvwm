@@ -7,11 +7,12 @@ Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
 Summary(tr):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
-Release:	24
+Release:	25
 License:	GPL
 Group:		X11/Window Managers
 Requires:	fvwm2-icons
-Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
+Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
+# Source0-md5:	875733e77e285566197f4b50746aefc6
 Source1:	%{name}-system.%{name}rc
 Source2:	%{name}.desktop
 Source3:	%{name}.RunWM
@@ -21,6 +22,7 @@ Patch1:		%{name}-imake.patch
 Patch2:		%{name}-security.patch
 Patch3:		%{name}-%{name}man.patch
 Patch4:		%{name}-enable-m4.patch
+Patch5:		%{name}-maxpopups.patch
 Requires:	wmconfig >= 0.9.9-5
 Requires:	m4
 Requires:	xinitrc >= 3.0
@@ -64,6 +66,7 @@ de botões".
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 PATH="$PATH:%{_bindir}"; export PATH
