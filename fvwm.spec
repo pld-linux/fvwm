@@ -17,6 +17,7 @@ Source1:	%{name}-system.%{name}rc
 Source2:	%{name}.desktop
 Source3:	%{name}.RunWM
 Source4:	%{name}.wm_style
+Source5:	%{name}-xsession.desktop
 Patch0:		%{name}-fsstnd.patch
 Patch1:		%{name}-imake.patch
 Patch2:		%{name}-security.patch
@@ -78,7 +79,9 @@ xmkmf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm},%{_wmpropsdir}}
+install -d \
+	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm} \
+	$RPM_BUILD_ROOT{%{_datadir}/xsessions,%{_wmpropsdir}}
 
 %{__make} install install.man DESTDIR=$RPM_BUILD_ROOT
 
@@ -87,6 +90,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.names
+install %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -101,5 +105,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/X11/fvwm
 %attr(755,root,root) %{_libdir}/X11/fvwm/*
 %attr(755,root,root) %{_bindir}/fvwm
+%{_datadir}/xsessions}/%{name}.desktop
 %{_wmpropsdir}/fvwm.desktop
 %{_mandir}/*/*
