@@ -29,6 +29,7 @@ Requires:	xinitrc >= 3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_wmpropsdir	/usr/share/wm-properties
+%define		_xlibdir	/usr/X11R6/lib/X11
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
@@ -102,9 +103,8 @@ rm -rf $RPM_BUILD_ROOT
 %config %{_sysconfdir}/X11/fvwm/system.fvwmrc
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 /etc/sysconfig/wmstyle/*.names
-%dir %{_libdir}/X11/fvwm
-# something is still wrong, binaries land in /usr/X11R6/lib/X11/fvwm/*
-%attr(755,root,root) %{_libdir}/X11/fvwm/*
+%dir %{_xlibdir}/fvwm
+%attr(755,root,root) %{_xlibdir}/fvwm/*
 %attr(755,root,root) %{_bindir}/fvwm
 %{_datadir}/xsessions/%{name}.desktop
 %{_wmpropsdir}/fvwm.desktop
