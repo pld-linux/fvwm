@@ -10,7 +10,7 @@ Version:	1.24r
 Release:	28
 License:	GPL
 Group:		X11/Window Managers
-Source0:	ftp://sunsite.unc.edu/pub/Linux/X11/window-managers/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-1/%{name}-%{version}.tar.gz
 # Source0-md5:	875733e77e285566197f4b50746aefc6
 Source1:	%{name}-system.%{name}rc
 Source2:	%{name}.desktop
@@ -23,6 +23,7 @@ Patch3:		%{name}-%{name}man.patch
 Patch4:		%{name}-enable-m4.patch
 Patch5:		%{name}-maxpopups.patch
 Patch6:		%{name}-man.patch
+URL:		http://www.fvwm.org/
 Requires(post):	vfmg >= 0.9.18-3
 Requires:	fvwm2-icons
 Requires:	m4
@@ -71,7 +72,6 @@ de botões".
 %patch6 -p1
 
 %build
-PATH="$PATH:%{_bindir}"; export PATH
 xmkmf
 %{__make} Makefiles
 %{__make} \
