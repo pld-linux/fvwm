@@ -1,17 +1,20 @@
-Summary: An X Window System based window manager.
-Name: fvwm
-Version: 1.24r
-Release: 17
-Copyright: GPL
-Group: User Interface/Desktops
-Requires: fvwm2-icons
-Source0: sunsite.unc.edu:/pub/Linux/X11/window-managers/fvwm-1.24r.tar.gz
-Source1: fvwm-1.24r-system.fvwmrc
-Patch0: fvwm-1.24r-fsstnd.patch
-Patch1: fvwm-1.24r-imake.patch
-Patch2: fvwm-1.24r-security.patch
-Patch3: fvwm-1.24r-fvwmman.patch
-Buildroot: /var/tmp/fvwm-root
+Summary:	An X Window System based window manager.
+Name:		fvwm
+Version:	1.24r
+Release:	18
+Copyright:	GPL
+Group:		User Interface/Desktops
+Requires:	fvwm2-icons
+Source0:	ftp://sunsite.unc.edu:/pub/Linux/X11/window-managers/fvwm-1.24r.tar.gz
+Source1:	fvwm-1.24r-system.fvwmrc
+Patch0:		fvwm-1.24r-fsstnd.patch
+Patch1:		fvwm-1.24r-imake.patch
+Patch2:		fvwm-1.24r-security.patch
+Patch3:		fvwm-1.24r-fvwmman.patch
+Buildroot:	/tmp/%{name}-%{version}-root
+
+%define		_prefix	/usr/X11R6
+%define		_mandir	/usr/X11R6/man
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
@@ -25,11 +28,11 @@ Install the fvwm package if you'd like to use the FVWM window manager.  If
 you install fvwm, you'll also need to install fvwm2-icons.
 
 %prep
-%setup
-%patch0 -p1 -b .fsstnd
-%patch1 -p1 -b .imake
-%patch2 -p1 -b .security
-%patch3 -p1 -b .fvwmman
+%setup -q
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 export PATH=$PATH:/usr/X11R6/bin
@@ -39,19 +42,22 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install install.man DESTDIR=$RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/etc/X11/fvwm/
-install $RPM_SOURCE_DIR/fvwm-1.24r-system.fvwmrc $RPM_BUILD_ROOT/etc/X11/fvwm/system.fvwmrc
-strip $RPM_BUILD_ROOT/usr/X11R6/bin/fvwm
-strip $RPM_BUILD_ROOT/usr/X11R6/lib/X11/fvwm/* || :
+install -d $RPM_BUILD_ROOT/etc/X11/fvwm/
 
-%files
-/usr/X11R6/lib/X11/fvwm
-/usr/X11R6/bin/fvwm
-%dir /etc/X11/fvwm
-%config /etc/X11/fvwm/system.fvwmrc
-/usr/X11R6/man/*/*
-%doc sample.fvwmrc/*
+make install install.man DESTDIR=$RPM_BUILD_ROOT
+install $RPM_SOURCE_DIR/fvwm-1.24r-system.fvwmrc $RPM_BUILD_ROOT/etc/X11/fvwm/system.fvwmrc
+strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/fvwm \
+	$RPM_BUILD_ROOT%{_libdir}/X11/fvwm/* || :
+
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/*/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%files
+%doc sample.fvwmrc/*
+%dir /etc/X11/fvwm
+%config /etc/X11/fvwm/system.fvwmrc
+%{_libdir}/X11/fvwm
+%{_bindir}/fvwm
+%{_mandir}/*/*
