@@ -186,8 +186,8 @@ DeskTopScale 32
 #
 # ModulePath is a colon-separated list, just like regular unix PATH
 ModulePath /usr/X11R6/lib/X11/fvwm/
-PixmapPath /usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
-IconPath   /usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
+PixmapPath /usr/share/pixmaps/:/usr/X11R6/include/X11/pixmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
+IconPath   /usr/share/pixmaps/:/usr/X11R6/include/X11/bitmaps/:/usr/X11R6/share/icons/:/usr/X11R6/share/icons/mini/:/usr/share/icons/:/usr/share/icons/mini/
 
 ############################################################################
 # Set the decoration styles and window options
