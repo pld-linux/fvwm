@@ -31,6 +31,7 @@ Requires:	xinitrc-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_wmpropsdir	/usr/share/wm-properties
+%define		_sysconfdir	/etc/X11/fvwm
 
 %description
 FVWM (the F stands for whatever you want, but the VWM stands for
@@ -84,7 +85,7 @@ xmkmf
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d \
-	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig/wmstyle,X11/fvwm} \
+	$RPM_BUILD_ROOT{%{_sysconfdir},/etc/sysconfig/wmstyle} \
 	$RPM_BUILD_ROOT{%{_datadir}/xsessions,%{_wmpropsdir}}
 
 %{__make} install install.man \
@@ -92,7 +93,7 @@ install -d \
 	BINDIR=%{_libdir}/fvwm1 \
 	MANDIR=%{_mandir}/man1
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/X11/fvwm/system.fvwmrc
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwmrc
 install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
 
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
@@ -115,8 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc sample.fvwmrc/*
-%dir %{_sysconfdir}/X11/fvwm
-%config %{_sysconfdir}/X11/fvwm/system.fvwmrc
+%dir %{_sysconfdir}
+%config %{_sysconfdir}/system.fvwmrc
+%ghost %{_sysconfdir}/fvwm.menu
 %attr(755,root,root) /etc/sysconfig/wmstyle/*.sh
 %dir %{_libdir}/fvwm1
 %attr(755,root,root) %{_libdir}/fvwm1/*
