@@ -24,6 +24,9 @@ Patch4:		%{name}-enable-m4.patch
 Patch5:		%{name}-maxpopups.patch
 Patch6:		%{name}-man.patch
 URL:		http://www.fvwm.org/
+BuildRequires:	XFree86
+BuildRequires:	XFree86-devel
+BuildRequires:	imake
 Requires(post):	vfmg >= 0.9.18-3
 Requires:	fvwm2-icons
 Requires:	m4
