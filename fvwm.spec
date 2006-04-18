@@ -27,7 +27,7 @@ URL:		http://www.fvwm.org/
 BuildRequires:	XFree86
 BuildRequires:	XFree86-devel
 BuildRequires:	imake
-Requires(post):	vfmg >= 0.9.18-3
+Requires(post):	vfmg >= 0.9.95
 Requires:	fvwm2-icons
 Requires:	m4
 Requires:	vfmg >= 0.9.18-3
@@ -115,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 # generate initial menu
 [ -f /etc/sysconfig/vfmg ] && . /etc/sysconfig/vfmg
 [ "$FVWM" = yes -o "$FVWM" = 1 -o ! -f /etc/X11/fvwm/fvwm.menu ] && \
-	vfmg -f -x -c fvwm >/etc/X11/fvwm/fvwm.menu 2>/dev/null ||:
+	vfmg fvwm >/etc/X11/fvwm/fvwm.menu 2>/dev/null ||:
 
 %files
 %defattr(644,root,root,755)
