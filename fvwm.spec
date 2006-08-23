@@ -31,7 +31,6 @@ Requires(post):	vfmg >= 0.9.95
 Requires:	fvwm2-icons
 Requires:	m4
 Requires:	vfmg >= 0.9.18-3
-Requires:	xinitrc-ng
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_wmpropsdir	/usr/share/wm-properties
