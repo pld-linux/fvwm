@@ -1,10 +1,10 @@
 Summary:	An X Window System based window manager
-Summary(es):	Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
-Summary(de):	Feeble (Fine?) Virtual Window Manager
-Summary(fr):	Feeble (Fine ?) Virtual Window Manager
-Summary(pl):	Zarz±dca okien dla X Window System
-Summary(pt):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
-Summary(tr):	X11 için pencere denetleyicisi
+Summary(es.UTF-8):   Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
+Summary(de.UTF-8):   Feeble (Fine?) Virtual Window Manager
+Summary(fr.UTF-8):   Feeble (Fine ?) Virtual Window Manager
+Summary(pl.UTF-8):   ZarzÄ…dca okien dla X Window System
+Summary(pt.UTF-8):   Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
+Summary(tr.UTF-8):   X11 iÃ§in pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
 Release:	28
@@ -44,24 +44,24 @@ minimize memory consumption, to provide window frames with a 3D look,
 and to provide a simple virtual desktop. FVWM can be configured to
 look like Motif.
 
-%description -l es
-fvwm es un administrador de ventanas pequeño, rápido y muy flexible.
-Puede ser configurado para parecer con Motif, y posee una útil "barra
+%description -l es.UTF-8
+fvwm es un administrador de ventanas pequeÃ±o, rÃ¡pido y muy flexible.
+Puede ser configurado para parecer con Motif, y posee una Ãºtil "barra
 de botones".
 
-%description -l pl
-FVWM (za F mo¿na sobie podstawiæ co kto woli, lecz VWM pochodzi od
-pierwszych liter "Virtual Window Manager", czyli wirtualny zarz±dca
-okien) to zarz±dca okien dla systemu X Window. FVWM pochodzi od twm.
-Zaprojektowano go tak, by zminimalizowaæ wymagania pamiêciowe,
-udostêpniæ ramki okien sprawiaj±ce wra¿enie trójwymiarowych i proste
-biurko wirtualne. Mo¿na tez skonfigurowaæ FVWM tak, by mia³ wygl±d
+%description -l pl.UTF-8
+FVWM (za F moÅ¼na sobie podstawiÄ‡ co kto woli, lecz VWM pochodzi od
+pierwszych liter "Virtual Window Manager", czyli wirtualny zarzÄ…dca
+okien) to zarzÄ…dca okien dla systemu X Window. FVWM pochodzi od twm.
+Zaprojektowano go tak, by zminimalizowaÄ‡ wymagania pamiÄ™ciowe,
+udostÄ™pniÄ‡ ramki okien sprawiajÄ…ce wraÅ¼enie trÃ³jwymiarowych i proste
+biurko wirtualne. MoÅ¼na tez skonfigurowaÄ‡ FVWM tak, by miaÅ‚ wyglÄ…d
 podobny do Motifa.
 
-%description -l pt
-fvwm é um gerente de janelas pequeno, rápido e muito flexível. Ele
-pode ser configurado para parecer com Motif, e possui uma útil "barra
-de botões".
+%description -l pt.UTF-8
+fvwm Ã© um gerente de janelas pequeno, rÃ¡pido e muito flexÃ­vel. Ele
+pode ser configurado para parecer com Motif, e possui uma Ãºtil "barra
+de botÃµes".
 
 %prep
 %setup -q
