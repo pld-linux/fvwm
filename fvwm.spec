@@ -1,10 +1,10 @@
 Summary:	An X Window System based window manager
-Summary(es.UTF-8):   Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
-Summary(de.UTF-8):   Feeble (Fine?) Virtual Window Manager
-Summary(fr.UTF-8):   Feeble (Fine ?) Virtual Window Manager
-Summary(pl.UTF-8):   Zarządca okien dla X Window System
-Summary(pt.UTF-8):   Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
-Summary(tr.UTF-8):   X11 için pencere denetleyicisi
+Summary(es.UTF-8):	Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
+Summary(de.UTF-8):	Feeble (Fine?) Virtual Window Manager
+Summary(fr.UTF-8):	Feeble (Fine ?) Virtual Window Manager
+Summary(pl.UTF-8):	Zarządca okien dla X Window System
+Summary(pt.UTF-8):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
+Summary(tr.UTF-8):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
 Release:	28
