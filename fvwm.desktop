@@ -1,9 +1,7 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Fvwm
 Exec=fvwm1
 TryExec=fvwm1
-
 [Window Manager]
 SessionManaged=false
 # vi: encoding=utf-8
