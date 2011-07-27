@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_with	gnome2		# build with support for GNOME2 wm-properties
+#
 Summary:	An X Window System based window manager
 Summary(es.UTF-8):	Administrador de Ventanas: Feeble (Fine?) Virtual Window Manager
 Summary(de.UTF-8):	Feeble (Fine?) Virtual Window Manager
@@ -7,7 +11,7 @@ Summary(pt.UTF-8):	Gerenciador de Janelas: Feeble (Fine?) Virtual Window Manager
 Summary(tr.UTF-8):	X11 için pencere denetleyicisi
 Name:		fvwm
 Version:	1.24r
-Release:	29
+Release:	30
 License:	GPL
 Group:		X11/Window Managers
 Source0:	ftp://ftp.fvwm.org/pub/fvwm/version-1/%{name}-%{version}.tar.gz
@@ -97,7 +101,7 @@ install -d \
 	MANDIR=%{_mandir}/man1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/system.fvwmrc
-install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}
+%{?with_gnome2:install %{SOURCE2} $RPM_BUILD_ROOT%{_wmpropsdir}}
 
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/wmstyle/%{name}.sh
 install %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/xsessions/%{name}.desktop
@@ -128,5 +132,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/fvwm1/*
 %attr(755,root,root) %{_bindir}/fvwm1
 %{_datadir}/xsessions/%{name}.desktop
-%{_wmpropsdir}/fvwm.desktop
+%{?with_gnome2:%{_wmpropsdir}/fvwm.desktop}
 %{_mandir}/*/*
